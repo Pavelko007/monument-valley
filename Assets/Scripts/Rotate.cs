@@ -1,31 +1,72 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    private bool rotatingClockwise = false;
+    enum State
+    {
+        RotatingClockwise,
+        RotatingCounterclockwise,
+        FixedPosition
+    }
 
+    private State state = State.FixedPosition;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (rotatingClockwise && (transform.eulerAngles.z > 270 || transform.eulerAngles.z <= 0))
-	    {
-	        transform.Rotate(0, 0, -1);
-	    }
-	    else if(!rotatingClockwise && transform.eulerAngles.z > 0)
-	    {
-	        transform.Rotate(0, 0, 1);
-	    }
+    private float rotVel = 0f;
+    private float smoothTime = .3f;
 
-	    if (Input.anyKeyDown)
-	    {
-	        rotatingClockwise = !rotatingClockwise;
-	    }
-	}
+    public float CurAngle
+    {
+        get { return transform.eulerAngles.z; }
+        set { transform.eulerAngles = new Vector3(0, 0, value); }
+    }
+
+    private int targetAngle;
+    private float angleEps = 0.5f;
+
+    public int TargetAngle
+    {
+        get { return targetAngle; }
+        set
+        {
+            //make sure that angle wraps to [0,360) range
+            targetAngle = (value % 360 + 360)%360;
+        }
+    }
+
+    void Update()
+    {
+        switch (state)
+        {
+            case State.FixedPosition:
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    state = State.RotatingCounterclockwise;
+                    TargetAngle = (int) (CurAngle + 90);
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    state = State.RotatingClockwise;
+                    TargetAngle = (int) (CurAngle - 90);
+                }
+                break;
+            case State.RotatingClockwise:
+            case State.RotatingCounterclockwise:
+                var newAngle = Mathf.SmoothDampAngle(CurAngle, TargetAngle, ref rotVel, smoothTime);
+
+                var angleDiff = Mathf.Min(
+                    Mathf.Abs(newAngle - TargetAngle), 
+                    Mathf.Abs(newAngle - 360 - TargetAngle)
+                    );
+                
+                if (angleDiff < angleEps )
+                {
+                    CurAngle = TargetAngle;
+                    state = State.FixedPosition;
+                    break;
+                }
+
+                CurAngle = newAngle;
+                break;
+        }
+    }
 }
