@@ -304,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224194773}
   - component: {fileID: 224194774}
+  - component: {fileID: 224194775}
   m_Layer: 0
   m_Name: Rotate
   m_TagString: Untagged
@@ -339,6 +340,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d9e0be0bae419b4483a073e54cb5114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &224194775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224194772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7233cf2c644c81e4ab10ff404d774f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &462390767
@@ -1452,6 +1465,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rotator
       objectReference: {fileID: 0}
+    - target: {fileID: 3222678921698062418, guid: f88b36175ef41374e8094a4a417e6cf4, type: 3}
+      propertyPath: RotationTarget
+      value: 
+      objectReference: {fileID: 224194775}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88b36175ef41374e8094a4a417e6cf4, type: 3}
 --- !u!1 &1483559083

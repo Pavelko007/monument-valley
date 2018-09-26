@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206b6d54b501b244d8ec9130a9ad27b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotationTarget: {fileID: 0}
 --- !u!114 &4190285410396121455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3222678921698062418}
           m_MethodName: OnMouseDown
-          m_Mode: 1
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -85,7 +86,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3222678921698062418}
           m_MethodName: OnMouseUp
-          m_Mode: 1
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
