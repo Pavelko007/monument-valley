@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Rotate : MonoBehaviour
+public class RotateKeyboardNoInertia : MonoBehaviour
 {
     enum State
     {
