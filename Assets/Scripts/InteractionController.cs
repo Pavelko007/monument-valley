@@ -6,13 +6,8 @@ using UnityEngine.EventSystems;
 public class InteractionController : MonoBehaviour
 {
     public RotationTarget RotationTarget;
+    public Transform handleCenterTransform;
     private Vector3 startMousePos;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     
     public void OnMouseDown(BaseEventData eventData)
     {
@@ -22,8 +17,16 @@ public class InteractionController : MonoBehaviour
 
     public void OnMouseUp(BaseEventData eventData)
     {
-        var curMousePos = Input.mousePosition;
+        var pointerEventData = eventData as PointerEventData;
+        var releasePos = pointerEventData.position;
         RotationTarget.transform.Rotate(transform.up, -45, Space.Self);
-        Debug.Log("on mouse up");
+        //compute angle between initial and release handle vectors
+    }
+
+    public void OnMouseDrag(BaseEventData eventData)
+    {
+        var pointerEventData = eventData as PointerEventData;
+        Debug.Log(string.Format("press pos {0}, dragged pos {1}",pointerEventData.pressPosition, pointerEventData.position));
+        Debug.Log("mouse drag");
     }
 }
