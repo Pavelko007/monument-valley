@@ -22,6 +22,7 @@ public class RotateKeyboardNoInertia : MonoBehaviour
 
     private int targetAngle;
     private float angleEps = 0.5f;
+    private const int RotationStepDegrees = 90;
 
     public int TargetAngle
     {
@@ -41,12 +42,11 @@ public class RotateKeyboardNoInertia : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     state = State.RotatingCounterclockwise;
-                    TargetAngle = (int) (CurAngle + 90);
+                    TargetAngle = (int) (CurAngle + RotationStepDegrees);
                 }
                 else if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    state = State.RotatingClockwise;
-                    TargetAngle = (int) (CurAngle - 90);
+                    RotateClockwise();
                 }
                 break;
             case State.RotatingClockwise:
@@ -68,5 +68,12 @@ public class RotateKeyboardNoInertia : MonoBehaviour
                 CurAngle = newAngle;
                 break;
         }
+    }
+
+    public void RotateClockwise()
+    {
+        state = State.RotatingClockwise;
+        int numQuaterRotations = (int)CurAngle / RotationStepDegrees;
+        TargetAngle = (numQuaterRotations+1)*RotationStepDegrees;
     }
 }

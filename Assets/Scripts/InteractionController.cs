@@ -7,6 +7,8 @@ public class InteractionController : MonoBehaviour
 {
     public RotationTarget RotationTarget;
     public Transform handleCenterTransform;
+    public RotateKeyboardNoInertia rotationExecutor;
+
     private Vector2 startMousePos;
     private Vector2 curMousePos;
 
@@ -23,6 +25,7 @@ public class InteractionController : MonoBehaviour
         isDraging = false;
         var pointerEventData = eventData as PointerEventData;
         var releasePos = pointerEventData.position;
+        rotationExecutor.RotateClockwise();
     }
 
     public void OnMouseDrag(BaseEventData eventData)
