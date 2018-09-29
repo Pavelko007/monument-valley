@@ -303,7 +303,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224194773}
-  - component: {fileID: 224194774}
   m_Layer: 0
   m_Name: Rotate
   m_TagString: Untagged
@@ -326,18 +325,6 @@ Transform:
   m_Father: {fileID: 1207981505}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
---- !u!114 &224194774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224194772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d9e0be0bae419b4483a073e54cb5114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &462390767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,6 +1514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1491585566}
   - component: {fileID: 1491585567}
+  - component: {fileID: 1491585568}
   m_Layer: 0
   m_Name: RotationParent
   m_TagString: Untagged
@@ -1562,6 +1550,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7233cf2c644c81e4ab10ff404d774f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1491585568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491585565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9e0be0bae419b4483a073e54cb5114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1532420918
