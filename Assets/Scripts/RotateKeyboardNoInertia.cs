@@ -22,6 +22,7 @@ public class RotateKeyboardNoInertia : MonoBehaviour
 
     private int targetAngle;
     private float angleEps = 0.5f;
+    private const int FullRotationAngle = 360;
     private const int RotationStepDegrees = 90;
 
     public int TargetAngle
@@ -29,8 +30,7 @@ public class RotateKeyboardNoInertia : MonoBehaviour
         get { return targetAngle; }
         set
         {
-            //make sure that angle wraps to [0,360) range
-            targetAngle = (value % 360 + 360)%360;
+            targetAngle = (value % FullRotationAngle + FullRotationAngle)%FullRotationAngle;
         }
     }
 
@@ -55,7 +55,7 @@ public class RotateKeyboardNoInertia : MonoBehaviour
 
                 var angleDiff = Mathf.Min(
                     Mathf.Abs(newAngle - TargetAngle), 
-                    Mathf.Abs(newAngle - 360 - TargetAngle)
+                    Mathf.Abs(newAngle - FullRotationAngle - TargetAngle)
                     );
                 
                 if (angleDiff < angleEps )
