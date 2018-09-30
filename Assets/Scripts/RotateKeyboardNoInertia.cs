@@ -30,8 +30,13 @@ public class RotateKeyboardNoInertia : MonoBehaviour
         get { return targetAngle; }
         set
         {
-            targetAngle = (value % FullRotationAngle + FullRotationAngle)%FullRotationAngle;
+            targetAngle = WrapAngle(value);
         }
+    }
+
+    private int WrapAngle(int angle)
+    {
+        return (angle % FullRotationAngle + FullRotationAngle)%FullRotationAngle;
     }
 
     void Update()
