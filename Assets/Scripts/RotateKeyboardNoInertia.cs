@@ -82,14 +82,36 @@ public class RotateKeyboardNoInertia : MonoBehaviour
     private void RotateCounterclockwise()
     {
         state = State.RotatingCounterclockwise;
-        int numQuaterRotations = (int) CurAngle/ RotationStepDegrees;
-        TargetAngle = (numQuaterRotations-1)*RotationStepDegrees;
+        TargetAngle = GetNextCounterclockwiseAngle();
     }
 
     public void RotateClockwise()
     {
         state = State.RotatingClockwise;
-        int numQuaterRotations = (int)CurAngle / RotationStepDegrees;
-        TargetAngle = (numQuaterRotations+1)*RotationStepDegrees;
+        TargetAngle = GetNextClockwiseAngle();
+    }
+
+    private int GetNextClockwiseAngle()
+    {
+        int numQuaterRotations = (int) CurAngle / RotationStepDegrees;
+        return (numQuaterRotations + 1) * RotationStepDegrees;
+    }
+
+    private int GetNextCounterclockwiseAngle()
+    {
+        int numQuaterRotations = (int) CurAngle / RotationStepDegrees;
+        return (numQuaterRotations - 1) * RotationStepDegrees;
+    }
+
+    public void RotateToClosest()
+    {
+        if (true)
+        {
+            RotateClockwise();
+        }
+        else
+        {
+            RotateCounterclockwise();
+        }
     }
 }

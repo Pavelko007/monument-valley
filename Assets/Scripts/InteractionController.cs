@@ -25,7 +25,7 @@ public class InteractionController : MonoBehaviour
         isDraging = false;
         var pointerEventData = eventData as PointerEventData;
         var releasePos = pointerEventData.position;
-        rotationExecutor.RotateClockwise();
+        rotationExecutor.RotateToClosest();
     }
 
     public void OnMouseDrag(BaseEventData eventData)
