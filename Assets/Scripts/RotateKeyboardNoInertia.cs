@@ -57,10 +57,7 @@ public class RotateKeyboardNoInertia : MonoBehaviour
             case State.RotatingCounterclockwise:
                 var newAngle = Mathf.SmoothDampAngle(CurAngle, TargetAngle, ref rotVel, smoothTime);
 
-                var angleDiff = Mathf.Min(
-                    Mathf.Abs(newAngle - TargetAngle), 
-                    Mathf.Abs(newAngle - FullRotationAngle - TargetAngle)
-                    );
+                var angleDiff = AngleDiff(newAngle, TargetAngle);
                 
                 if (angleDiff < angleEps )
                 {
@@ -72,6 +69,14 @@ public class RotateKeyboardNoInertia : MonoBehaviour
                 CurAngle = newAngle;
                 break;
         }
+    }
+
+    private float AngleDiff(float angle1, int angle2)
+    {
+        return Mathf.Min(
+            Mathf.Abs(angle1 - angle2),
+            Mathf.Abs(angle1 - FullRotationAngle - angle2)
+        );
     }
 
     private void RotateCounterclockwise()
