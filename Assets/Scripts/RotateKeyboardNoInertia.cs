@@ -100,7 +100,7 @@ public class RotateKeyboardNoInertia : MonoBehaviour
     private int GetNextCounterclockwiseAngle()
     {
         int numQuaterRotations = (int) CurAngle / RotationStepDegrees;
-        return (numQuaterRotations - 1) * RotationStepDegrees;
+        return (numQuaterRotations) * RotationStepDegrees;
     }
 
     public void RotateToClosest()
