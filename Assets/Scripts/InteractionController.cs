@@ -13,11 +13,13 @@ public class InteractionController : MonoBehaviour
     private Vector2 curMousePos;
 
     private bool isDraging = false;
+    private float startAngle;
 
     public void OnMouseDown(BaseEventData eventData)
     {
         var pointerEventData = eventData as PointerEventData;
         startMousePos = pointerEventData.pressPosition;
+        startAngle = RotationTarget.transform.localRotation.eulerAngles.z;
     }
 
     public void OnMouseUp(BaseEventData eventData)
@@ -39,7 +41,7 @@ public class InteractionController : MonoBehaviour
         var startVec = startMousePos - handleCenterScreen;
         var curAngle = Vector2.SignedAngle(startVec, curVec);
 
-        RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
+        RotationTarget.transform.localRotation = Quaternion.Euler(0,0, startAngle+curAngle);
 
         Debug.Log("mouse drag");
         Debug.Log(string.Format("dragged pos {0}", pointerEventData.position));
