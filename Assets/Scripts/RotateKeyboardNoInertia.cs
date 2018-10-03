@@ -105,13 +105,15 @@ public class RotateKeyboardNoInertia : MonoBehaviour
 
     public void RotateToClosest()
     {
-        if (true)
+        var nextCounterclockwiseAngle = GetNextCounterclockwiseAngle();
+
+        if ( (Mathf.Abs(CurAngle - nextCounterclockwiseAngle) < 45))
         {
-            RotateClockwise();
+            RotateCounterclockwise();
         }
         else
         {
-            RotateCounterclockwise();
+            RotateClockwise();
         }
     }
 }
