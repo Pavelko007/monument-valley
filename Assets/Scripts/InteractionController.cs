@@ -14,12 +14,22 @@ public class InteractionController : MonoBehaviour
 
     private bool isDraging = false;
     private float startAngle;
+    private float angularSpeed;
+
+    void Update()
+    {
+        if (isDraging)
+        {
+            Debug.Log($"angular speed : {angularSpeed}");
+        }
+    }
 
     public void OnMouseDown(BaseEventData eventData)
     {
         var pointerEventData = eventData as PointerEventData;
         startMousePos = pointerEventData.pressPosition;
         startAngle = RotationTarget.transform.localRotation.eulerAngles.z;
+        previousAngle = startAngle;
     }
 
     public void OnMouseUp(BaseEventData eventData)
@@ -30,6 +40,8 @@ public class InteractionController : MonoBehaviour
         rotationExecutor.RotateToClosest();
     }
 
+    private float previousAngle;
+
     public void OnMouseDrag(BaseEventData eventData)
     {
         isDraging = true;
@@ -39,11 +51,15 @@ public class InteractionController : MonoBehaviour
         var handleCenterScreen = (Vector2)Camera.main.WorldToScreenPoint(handleCenterTransform.position);
         var curVec = curMousePos - handleCenterScreen;
         var startVec = startMousePos - handleCenterScreen;
-        var curAngle = Vector2.SignedAngle(startVec, curVec);
+        var relativeAngle = Vector2.SignedAngle(startVec, curVec);
 
-        RotationTarget.transform.localRotation = Quaternion.Euler(0,0, startAngle+curAngle);
+        var curAngle = startAngle+relativeAngle;
 
-        Debug.Log("mouse drag");
-        Debug.Log(string.Format("dragged pos {0}", pointerEventData.position));
+        RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
+        float deltaAngle = Mathf.Abs(curAngle - previousAngle);
+        angularSpeed = deltaAngle / Time.deltaTime;
+        previousAngle = curAngle;
+        //Debug.Log("mouse drag");
+        //Debug.Log(string.Format("dragged pos {0}", pointerEventData.position));
     }
 }
