@@ -7,7 +7,7 @@ public class InteractionController : MonoBehaviour
 {
     public RotationTarget RotationTarget;
     public Transform handleCenterTransform;
-    public RotateKeyboardNoInertia rotationExecutor;
+    public RotateKeyboardConstantSpeed rotationExecutor;
 
     private Vector2 startMousePos;
     private Vector2 curMousePos;

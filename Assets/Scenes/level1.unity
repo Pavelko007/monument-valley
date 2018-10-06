@@ -1469,7 +1469,7 @@ PrefabInstance:
     - target: {fileID: 3222678921698062418, guid: f88b36175ef41374e8094a4a417e6cf4, type: 3}
       propertyPath: rotationExecutor
       value: 
-      objectReference: {fileID: 1491585568}
+      objectReference: {fileID: 1491585569}
     - target: {fileID: 4157243858427442, guid: f88b36175ef41374e8094a4a417e6cf4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1528,7 +1528,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1491585566}
-  - component: {fileID: 1491585568}
   - component: {fileID: 1491585567}
   - component: {fileID: 1491585569}
   m_Layer: 0
@@ -1567,18 +1566,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7233cf2c644c81e4ab10ff404d774f35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1491585568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491585565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d9e0be0bae419b4483a073e54cb5114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1491585569
