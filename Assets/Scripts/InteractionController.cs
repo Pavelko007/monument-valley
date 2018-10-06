@@ -9,12 +9,16 @@ public class InteractionController : MonoBehaviour
     public Transform handleCenterTransform;
     public RotateKeyboardConstantSpeed rotationExecutor;
 
-    private Vector2 curMousePos;
-
     private bool isDraging = false;
     private float previousAngle;
     private float angularSpeed;
     private Vector2 prevMousePos;
+
+    public float PreviousAngle
+    {
+        get { return previousAngle; }
+        set { previousAngle = value; }
+    }
 
 
     void Update()
@@ -29,7 +33,7 @@ public class InteractionController : MonoBehaviour
     {
         var pointerEventData = eventData as PointerEventData;
         prevMousePos = pointerEventData.pressPosition;
-        previousAngle = RotationTarget.transform.localRotation.eulerAngles.z;
+        PreviousAngle = RotationTarget.transform.localRotation.eulerAngles.z;
     }
 
     public void OnMouseUp(BaseEventData eventData)
@@ -44,22 +48,22 @@ public class InteractionController : MonoBehaviour
     {
         isDraging = true;
         var pointerEventData = eventData as PointerEventData;
-        curMousePos = pointerEventData.position;
+        var curPointerPos = pointerEventData.position;
 
         var handleCenterScreen = (Vector2)Camera.main.WorldToScreenPoint(handleCenterTransform.position);
-        var curVec = curMousePos - handleCenterScreen;
+        var curVec = curPointerPos - handleCenterScreen;
         var prevVec = prevMousePos - handleCenterScreen;
 
         var relativeAngle = Vector2.SignedAngle(prevVec, curVec);
 
-        var curAngle = previousAngle + relativeAngle;
+        var curAngle = PreviousAngle + relativeAngle;
 
         RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
-        float deltaAngle = curAngle - previousAngle;
+        float deltaAngle = curAngle - PreviousAngle;
         angularSpeed = deltaAngle / Time.deltaTime;
 
-        previousAngle = curAngle;
-        prevMousePos = curMousePos;
+        PreviousAngle = curAngle;
+        prevMousePos = curPointerPos;
         //Debug.Log("mouse drag");
         //Debug.Log(string.Format("dragged pos {0}", pointerEventData.position));
     }
