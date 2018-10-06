@@ -16,6 +16,7 @@ public class InteractionController : MonoBehaviour
     private float startAngle;
     private float previousAngle;
     private float angularSpeed;
+    private Vector2 prevMousePos;
 
 
     void Update()
@@ -30,6 +31,7 @@ public class InteractionController : MonoBehaviour
     {
         var pointerEventData = eventData as PointerEventData;
         startMousePos = pointerEventData.pressPosition;
+        prevMousePos = startMousePos;
         startAngle = RotationTarget.transform.localRotation.eulerAngles.z;
         previousAngle = startAngle;
     }
@@ -51,14 +53,18 @@ public class InteractionController : MonoBehaviour
         var handleCenterScreen = (Vector2)Camera.main.WorldToScreenPoint(handleCenterTransform.position);
         var curVec = curMousePos - handleCenterScreen;
         var startVec = startMousePos - handleCenterScreen;
-        var relativeAngle = Vector2.SignedAngle(startVec, curVec);
+        var prevVec = prevMousePos - handleCenterScreen;
 
-        var curAngle = startAngle+relativeAngle;
+        var relativeAngle = Vector2.SignedAngle(prevVec, curVec);
+
+        var curAngle = previousAngle + relativeAngle;
 
         RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
         float deltaAngle = curAngle - previousAngle;
         angularSpeed = deltaAngle / Time.deltaTime;
+
         previousAngle = curAngle;
+        prevMousePos = curMousePos;
         //Debug.Log("mouse drag");
         //Debug.Log(string.Format("dragged pos {0}", pointerEventData.position));
     }
