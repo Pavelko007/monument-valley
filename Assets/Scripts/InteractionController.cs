@@ -9,11 +9,9 @@ public class InteractionController : MonoBehaviour
     public Transform handleCenterTransform;
     public RotateKeyboardConstantSpeed rotationExecutor;
 
-    private Vector2 startMousePos;
     private Vector2 curMousePos;
 
     private bool isDraging = false;
-    private float startAngle;
     private float previousAngle;
     private float angularSpeed;
     private Vector2 prevMousePos;
@@ -30,10 +28,8 @@ public class InteractionController : MonoBehaviour
     public void OnMouseDown(BaseEventData eventData)
     {
         var pointerEventData = eventData as PointerEventData;
-        startMousePos = pointerEventData.pressPosition;
-        prevMousePos = startMousePos;
-        startAngle = RotationTarget.transform.localRotation.eulerAngles.z;
-        previousAngle = startAngle;
+        prevMousePos = pointerEventData.pressPosition;
+        previousAngle = RotationTarget.transform.localRotation.eulerAngles.z;
     }
 
     public void OnMouseUp(BaseEventData eventData)
@@ -52,7 +48,6 @@ public class InteractionController : MonoBehaviour
 
         var handleCenterScreen = (Vector2)Camera.main.WorldToScreenPoint(handleCenterTransform.position);
         var curVec = curMousePos - handleCenterScreen;
-        var startVec = startMousePos - handleCenterScreen;
         var prevVec = prevMousePos - handleCenterScreen;
 
         var relativeAngle = Vector2.SignedAngle(prevVec, curVec);
