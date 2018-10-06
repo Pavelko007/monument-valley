@@ -14,7 +14,9 @@ public class InteractionController : MonoBehaviour
 
     private bool isDraging = false;
     private float startAngle;
+    private float previousAngle;
     private float angularSpeed;
+
 
     void Update()
     {
@@ -39,8 +41,6 @@ public class InteractionController : MonoBehaviour
         var releasePos = pointerEventData.position;
         rotationExecutor.RotateToClosest();
     }
-
-    private float previousAngle;
 
     public void OnMouseDrag(BaseEventData eventData)
     {
