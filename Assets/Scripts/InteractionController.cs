@@ -56,7 +56,7 @@ public class InteractionController : MonoBehaviour
         var curAngle = startAngle+relativeAngle;
 
         RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
-        float deltaAngle = Mathf.Abs(curAngle - previousAngle);
+        float deltaAngle = curAngle - previousAngle;
         angularSpeed = deltaAngle / Time.deltaTime;
         previousAngle = curAngle;
         //Debug.Log("mouse drag");
