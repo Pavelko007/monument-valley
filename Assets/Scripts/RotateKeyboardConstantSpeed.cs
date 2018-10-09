@@ -71,7 +71,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
             Debug.Log($"angular speed : {angularSpeed}");
         }
     }
-    public void StartRotate()
+    public void StartRotation()
     {
         isRotating = true;
     }
@@ -84,12 +84,18 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
         if (angleDiff < angleEps)
         {
-            CurAngle = TargetAngle;
-            state = State.FixedPosition;
+            StopRotation();
             return;
         }
 
         CurAngle = newAngle;
+    }
+
+    private void StopRotation()
+    {
+        isRotating = false;
+        CurAngle = TargetAngle;
+        state = State.FixedPosition;
     }
 
     private float AngleDiff(float angle1, int angle2)

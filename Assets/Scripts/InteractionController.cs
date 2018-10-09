@@ -33,7 +33,6 @@ public class InteractionController : MonoBehaviour
 
     public void OnMouseUp(BaseEventData eventData)
     {
-        rotationExecutor.isRotating = false;
         var pointerEventData = eventData as PointerEventData;
         var releasePos = pointerEventData.position;
         rotationExecutor.RotateToClosest();
@@ -41,7 +40,7 @@ public class InteractionController : MonoBehaviour
 
     public void OnMouseDrag(BaseEventData eventData)
     {
-        rotationExecutor.StartRotate();
+        rotationExecutor.StartRotation();
 
         var pointerEventData = eventData as PointerEventData;
         var curPointerPos = pointerEventData.position;
