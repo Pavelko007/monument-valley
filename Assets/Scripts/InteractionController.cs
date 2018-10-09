@@ -10,8 +10,6 @@ public class InteractionController : MonoBehaviour
     public RotateKeyboardConstantSpeed rotationExecutor;
 
     
-
-    
     private Vector2 prevMousePos;
 
     public float PreviousAngle
@@ -26,21 +24,6 @@ public class InteractionController : MonoBehaviour
         set { rotationExecutor.angularSpeed = value; }
     }
 
-    public bool IsMoving
-    {
-        get { return rotationExecutor.isMoving; }
-        set { rotationExecutor.isMoving = value; }
-    }
-
-
-    void Update()
-    {
-        if (IsMoving)
-        {
-            Debug.Log($"angular speed : {AngularSpeed}");
-        }
-    }
-
     public void OnMouseDown(BaseEventData eventData)
     {
         var pointerEventData = eventData as PointerEventData;
@@ -50,7 +33,7 @@ public class InteractionController : MonoBehaviour
 
     public void OnMouseUp(BaseEventData eventData)
     {
-        IsMoving = false;
+        rotationExecutor.isRotating = false;
         var pointerEventData = eventData as PointerEventData;
         var releasePos = pointerEventData.position;
         rotationExecutor.RotateToClosest();
@@ -58,7 +41,8 @@ public class InteractionController : MonoBehaviour
 
     public void OnMouseDrag(BaseEventData eventData)
     {
-        IsMoving = true;
+        rotationExecutor.StartRotate();
+
         var pointerEventData = eventData as PointerEventData;
         var curPointerPos = pointerEventData.position;
 
@@ -80,4 +64,6 @@ public class InteractionController : MonoBehaviour
         //Debug.Log("mouse drag");
         //Debug.Log(string.Format("dragged pos {0}", pointerEventData.position));
     }
+
+    
 }

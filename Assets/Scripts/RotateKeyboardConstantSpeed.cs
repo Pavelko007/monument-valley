@@ -38,7 +38,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
     }
 
     public float angularSpeed;
-    public bool isMoving = false;
+    public bool isRotating = false;
 
     private int WrapAngle(int angle)
     {
@@ -65,6 +65,15 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
                 break;
         }
+
+        if (isRotating)
+        {
+            Debug.Log($"angular speed : {angularSpeed}");
+        }
+    }
+    public void StartRotate()
+    {
+        isRotating = true;
     }
 
     private void RotateOneFrame()
