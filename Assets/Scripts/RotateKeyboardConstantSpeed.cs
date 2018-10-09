@@ -37,6 +37,8 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         }
     }
 
+    public float angularSpeed;
+
     private int WrapAngle(int angle)
     {
         return (angle % FullRotationAngle + FullRotationAngle)%FullRotationAngle;

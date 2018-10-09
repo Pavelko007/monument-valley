@@ -10,8 +10,8 @@ public class InteractionController : MonoBehaviour
     public RotateKeyboardConstantSpeed rotationExecutor;
 
     private bool isDraging = false;
+
     
-    private float angularSpeed;
     private Vector2 prevMousePos;
 
     public float PreviousAngle
@@ -20,12 +20,18 @@ public class InteractionController : MonoBehaviour
         set { rotationExecutor.previousAngle = value; }
     }
 
+    public float AngularSpeed
+    {
+        get { return rotationExecutor.angularSpeed; }
+        set { rotationExecutor.angularSpeed = value; }
+    }
+
 
     void Update()
     {
         if (isDraging)
         {
-            Debug.Log($"angular speed : {angularSpeed}");
+            Debug.Log($"angular speed : {AngularSpeed}");
         }
     }
 
@@ -60,7 +66,7 @@ public class InteractionController : MonoBehaviour
 
         RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
         float deltaAngle = curAngle - PreviousAngle;
-        angularSpeed = deltaAngle / Time.deltaTime;
+        AngularSpeed = deltaAngle / Time.deltaTime;
 
         PreviousAngle = curAngle;
         prevMousePos = curPointerPos;
