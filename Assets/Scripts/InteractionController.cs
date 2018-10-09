@@ -10,14 +10,14 @@ public class InteractionController : MonoBehaviour
     public RotateKeyboardConstantSpeed rotationExecutor;
 
     private bool isDraging = false;
-    private float previousAngle;
+    
     private float angularSpeed;
     private Vector2 prevMousePos;
 
     public float PreviousAngle
     {
-        get { return previousAngle; }
-        set { previousAngle = value; }
+        get { return rotationExecutor.previousAngle; }
+        set { rotationExecutor.previousAngle = value; }
     }
 
 

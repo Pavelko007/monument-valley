@@ -20,10 +20,13 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         set { transform.eulerAngles = new Vector3(0, 0, value); }
     }
 
-    private int targetAngle;
+    public float previousAngle;
+
     private float angleEps = 0.5f;
     private const int FullRotationAngle = 360;
     private const int RotationStepDegrees = 90;
+
+    private int targetAngle;
 
     public int TargetAngle
     {
