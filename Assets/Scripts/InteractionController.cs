@@ -18,12 +18,6 @@ public class InteractionController : MonoBehaviour
         set { rotationExecutor.previousAngle = value; }
     }
 
-    public float AngularSpeed
-    {
-        get { return rotationExecutor.angularSpeed; }
-        set { rotationExecutor.angularSpeed = value; }
-    }
-
     public void OnMouseDown(BaseEventData eventData)
     {
         var pointerEventData = eventData as PointerEventData;
@@ -54,15 +48,11 @@ public class InteractionController : MonoBehaviour
         var curAngle = PreviousAngle + relativeAngle;
 
         RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
-        float deltaAngle = curAngle - PreviousAngle;
-
-        AngularSpeed = deltaAngle / Time.deltaTime;
+        rotationExecutor.RotateDelta(curAngle - PreviousAngle);
 
         PreviousAngle = curAngle;
         prevMousePos = curPointerPos;
         //Debug.Log("mouse drag");
         //Debug.Log(string.Format("dragged pos {0}", pointerEventData.position));
     }
-
-    
 }

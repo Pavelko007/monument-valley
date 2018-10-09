@@ -143,4 +143,9 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
             RotateClockwise();
         }
     }
+
+    public void RotateDelta(float deltaAngle)
+    {
+        angularSpeed = deltaAngle / Time.deltaTime;
+    }
 }
