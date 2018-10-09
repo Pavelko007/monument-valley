@@ -38,6 +38,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
     }
 
     public float angularSpeed;
+    public bool isMoving = false;
 
     private int WrapAngle(int angle)
     {
