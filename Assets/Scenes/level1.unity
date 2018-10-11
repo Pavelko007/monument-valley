@@ -1580,6 +1580,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a548e39c6f1fc14aa3e4322d2a320ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotationTarget: {fileID: 1491585567}
+  previousAngle: 0
+  angularSpeed: 0
+  isRotating: 0
 --- !u!1 &1532420918
 GameObject:
   m_ObjectHideFlags: 0

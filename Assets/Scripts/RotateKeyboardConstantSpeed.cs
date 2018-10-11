@@ -2,6 +2,8 @@
 
 public class RotateKeyboardConstantSpeed : MonoBehaviour
 {
+    public RotationTarget RotationTarget;
+
     enum State
     {
         RotatingClockwise,
@@ -16,8 +18,8 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
     public float CurAngle
     {
-        get { return transform.eulerAngles.z; }
-        set { transform.eulerAngles = new Vector3(0, 0, value); }
+        get { return RotationTarget.Angle; }
+        set { RotationTarget.Angle =  value; }
     }
 
     public float previousAngle;
