@@ -8,8 +8,6 @@ public class InteractionController : MonoBehaviour
     public RotationTarget RotationTarget;
     public Transform handleCenterTransform;
     public RotateKeyboardConstantSpeed rotationExecutor;
-
-    
     private Vector2 prevMousePos;
 
     public float PreviousAngle
@@ -48,7 +46,7 @@ public class InteractionController : MonoBehaviour
         var curAngle = PreviousAngle + relativeAngle;
 
         RotationTarget.Angle = curAngle;
-        rotationExecutor.RotateDelta(curAngle - PreviousAngle);
+        rotationExecutor.RotateDelta(relativeAngle);
 
         PreviousAngle = curAngle;
         prevMousePos = curPointerPos;
