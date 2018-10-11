@@ -22,7 +22,7 @@ public class InteractionController : MonoBehaviour
     {
         var pointerEventData = eventData as PointerEventData;
         prevMousePos = pointerEventData.pressPosition;
-        PreviousAngle = RotationTarget.transform.localRotation.eulerAngles.z;
+        PreviousAngle = RotationTarget.Angle;
     }
 
     public void OnMouseUp(BaseEventData eventData)
@@ -47,7 +47,7 @@ public class InteractionController : MonoBehaviour
 
         var curAngle = PreviousAngle + relativeAngle;
 
-        RotationTarget.transform.localRotation = Quaternion.Euler(0,0, curAngle);
+        RotationTarget.Angle = curAngle;
         rotationExecutor.RotateDelta(curAngle - PreviousAngle);
 
         PreviousAngle = curAngle;

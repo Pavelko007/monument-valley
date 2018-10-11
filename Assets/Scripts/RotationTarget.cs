@@ -7,15 +7,9 @@ using UnityEngine;
 /// </summary>
 public class RotationTarget : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float Angle
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        get { return transform.eulerAngles.z; }
+        set { transform.eulerAngles = new Vector3(0, 0, value); }
     }
 }
