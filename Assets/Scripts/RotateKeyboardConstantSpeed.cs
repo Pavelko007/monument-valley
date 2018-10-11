@@ -22,7 +22,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         set { RotationTarget.Angle =  value; }
     }
 
-    private float angleEps = 0.5f;
+    private float angleEps = 5f;
     private const int FullRotationAngle = 360;
     private const int RotationStepDegrees = 90;
 
@@ -33,16 +33,16 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         get { return targetAngle; }
         set
         {
-            targetAngle = WrapAngle(value);
+            targetAngle = (int)WrapAngle(value);
         }
     }
 
     public float angularSpeed;
     public bool isRotating = false;
 
-    private int WrapAngle(int angle)
+    private float WrapAngle(float angle)
     {
-        return (angle % FullRotationAngle + FullRotationAngle)%FullRotationAngle;
+        return (angle %  FullRotationAngle + FullRotationAngle)% FullRotationAngle;
     }
 
     void Update()
@@ -78,7 +78,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
     private void RotateOneFrame()
     {
-        var newAngle = Mathf.SmoothDampAngle(CurAngle, TargetAngle, ref rotVel, smoothTime);
+        var newAngle = WrapAngle( CurAngle + angularSpeed*Time.deltaTime);
 
         var angleDiff = AngleDiff(newAngle, TargetAngle);
 
