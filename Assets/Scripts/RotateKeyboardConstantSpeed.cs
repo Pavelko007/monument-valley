@@ -132,15 +132,13 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
     public void StopExternalRotation()
     {
-        var nextCounterclockwiseAngle = GetNextCounterclockwiseAngle();
-
-        if ( (Mathf.Abs(CurAngle - nextCounterclockwiseAngle) < 45))
+        if (angularSpeed > 0)
         {
-            RotateCounterclockwise();
+            RotateClockwise();
         }
         else
         {
-            RotateClockwise();
+            RotateCounterclockwise();
         }
     }
 
