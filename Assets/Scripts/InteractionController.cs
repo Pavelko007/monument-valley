@@ -20,7 +20,7 @@ public class InteractionController : MonoBehaviour
     {
         var pointerEventData = eventData as PointerEventData;
         var releasePos = pointerEventData.position;
-        rotationExecutor.RotateToClosest();
+        rotationExecutor.StopExternalRotation();
     }
 
     public void OnMouseDrag(BaseEventData eventData)

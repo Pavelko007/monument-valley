@@ -130,7 +130,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         return (numQuaterRotations) * RotationStepDegrees;
     }
 
-    public void RotateToClosest()
+    public void StopExternalRotation()
     {
         var nextCounterclockwiseAngle = GetNextCounterclockwiseAngle();
 
