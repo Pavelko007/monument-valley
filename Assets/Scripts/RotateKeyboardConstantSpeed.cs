@@ -22,8 +22,6 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         set { RotationTarget.Angle =  value; }
     }
 
-    public float previousAngle;
-
     private float angleEps = 0.5f;
     private const int FullRotationAngle = 360;
     private const int RotationStepDegrees = 90;
@@ -146,8 +144,9 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         }
     }
 
-    public void RotateDelta(float deltaAngle)
+    public void RotateDeltaExternal(float deltaAngle)
     {
+        CurAngle += deltaAngle;
         angularSpeed = deltaAngle / Time.deltaTime;
     }
 }
