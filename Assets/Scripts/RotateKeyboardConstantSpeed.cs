@@ -60,7 +60,25 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
                 }
                 break;
             case State.RotatingClockwise:
+
             case State.RotatingCounterclockwise:
+                var newAngularSpeed = angularSpeed;
+                var nextClockwiseAngle = GetNextClockwiseAngle();
+                var nextCounterclockwiseAngle = GetNextCounterclockwiseAngle();
+                //find closest point
+                var accMag = 30;
+                if (AngleDiff(CurAngle, nextCounterclockwiseAngle) < 45)
+                {
+                    
+                    newAngularSpeed += Time.deltaTime * (-1)*accMag;
+                }
+                else
+                {
+                    newAngularSpeed += Time.deltaTime * accMag;
+                }
+                ///determine acc sign
+                //calculate acceleration toward point
+
                 RotateOneFrame();
 
                 break;
