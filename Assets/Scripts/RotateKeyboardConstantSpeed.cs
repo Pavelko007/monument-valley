@@ -67,15 +67,23 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
                 var nextCounterclockwiseAngle = GetNextCounterclockwiseAngle();
                 //find closest point
                 var accMag = 30;
-                if (AngleDiff(CurAngle, nextCounterclockwiseAngle) < 45)
+                var counterclockwiseDist = AngleDiff(CurAngle, nextCounterclockwiseAngle);
+                var clockwiseDist = 90 - counterclockwiseDist;
+                float acc;
+
+                float accStrenght;
+
+                if (counterclockwiseDist < 45)
                 {
-                    
-                    newAngularSpeed += Time.deltaTime * (-1)*accMag;
+                    accStrenght = 45-counterclockwiseDist;
+                    acc = (-1) * accStrenght * accMag;
                 }
                 else
                 {
-                    newAngularSpeed += Time.deltaTime * accMag;
+                    accStrenght = 45 - clockwiseDist;
+                    acc = accStrenght * accMag;
                 }
+                newAngularSpeed += Time.deltaTime * acc;
                 ///determine acc sign
                 //calculate acceleration toward point
 
