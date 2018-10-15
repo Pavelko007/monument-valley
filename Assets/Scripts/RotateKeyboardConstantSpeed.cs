@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class RotateKeyboardConstantSpeed : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         set { RotationTarget.Angle =  value; }
     }
 
-    private float angleEps = 5f;
+    private float angleEps = 2f;
     private const int FullRotationAngle = 360;
     private const int RotationStepDegrees = 90;
 
@@ -75,12 +76,12 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
                 if (counterclockwiseDist < 45)
                 {
-                    accStrenght = 45-counterclockwiseDist;
+                    accStrenght = CalcAccStrenght(counterclockwiseDist);
                     acc = (-1) * accStrenght * accMagnitude;
                 }
                 else
                 {
-                    accStrenght = 45 - clockwiseDist;
+                    accStrenght = CalcAccStrenght(clockwiseDist);
                     acc = accStrenght * accMagnitude;
                 }
                 newAngularSpeed += Time.deltaTime * acc;
@@ -97,6 +98,12 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
             Debug.Log($"angular speed : {angularSpeed}");
         }
     }
+
+    private static float CalcAccStrenght(float distToClosestTarget)
+    {
+        return (45-distToClosestTarget)/45;
+    }
+
     public void StartRotation()
     {
         isRotating = true;
@@ -108,7 +115,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
         var angleDiff = AngleDiff(newAngle, TargetAngle);
 
-        if (angleDiff < angleEps)
+        if (angleDiff < angleEps && Math.Abs(rotVel) < 5)
         {
             StopRotation();
             return;
