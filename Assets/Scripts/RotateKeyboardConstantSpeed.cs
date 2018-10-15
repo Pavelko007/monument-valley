@@ -39,6 +39,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
     public float angularSpeed;
     public bool isRotating = false;
+    public int accMagnitude = 45;
 
     private float WrapAngle(float angle)
     {
@@ -66,7 +67,6 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
                 var nextClockwiseAngle = GetNextClockwiseAngle();
                 var nextCounterclockwiseAngle = GetNextCounterclockwiseAngle();
                 //find closest point
-                var accMag = 30;
                 var counterclockwiseDist = AngleDiff(CurAngle, nextCounterclockwiseAngle);
                 var clockwiseDist = 90 - counterclockwiseDist;
                 float acc;
@@ -76,12 +76,12 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
                 if (counterclockwiseDist < 45)
                 {
                     accStrenght = 45-counterclockwiseDist;
-                    acc = (-1) * accStrenght * accMag;
+                    acc = (-1) * accStrenght * accMagnitude;
                 }
                 else
                 {
                     accStrenght = 45 - clockwiseDist;
-                    acc = accStrenght * accMag;
+                    acc = accStrenght * accMagnitude;
                 }
                 newAngularSpeed += Time.deltaTime * acc;
                 ///determine acc sign

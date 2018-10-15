@@ -1581,9 +1581,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationTarget: {fileID: 1491585567}
-  previousAngle: 0
   angularSpeed: 0
   isRotating: 0
+  accMagnitude: 45
 --- !u!1 &1532420918
 GameObject:
   m_ObjectHideFlags: 0
