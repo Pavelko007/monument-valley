@@ -41,6 +41,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
     public float angularSpeed;
     public bool isRotating = false;
     public int accMagnitude = 45;
+    private float prevAngle;
 
     private float WrapAngle(float angle)
     {
@@ -93,11 +94,20 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
                 break;
         }
 
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (isRotating)
         {
+
+            angularSpeed = (CurAngle-prevAngle) / Time.deltaTime;
+            prevAngle = CurAngle;
             Debug.Log($"angular speed : {angularSpeed}");
         }
     }
+
 
     private static float CalcAccStrenght(float distToClosestTarget)
     {
@@ -107,6 +117,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
     public void StartRotation()
     {
         isRotating = true;
+        prevAngle = CurAngle;
     }
 
     private void RotateOneFrame()
@@ -178,6 +189,5 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
     public void RotateDeltaExternal(float deltaAngle)
     {
         CurAngle += deltaAngle;
-        angularSpeed = deltaAngle / Time.deltaTime;
     }
 }
