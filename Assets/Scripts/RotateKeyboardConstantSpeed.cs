@@ -114,7 +114,8 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
     private static float CalcAccStrenght(float distToClosestTarget)
     {
-        return (45-distToClosestTarget)/45;
+        var t = distToClosestTarget/45;
+        return Mathf.Sqrt(1 -t*t);
     }
 
     public void StartExternalRotation()
