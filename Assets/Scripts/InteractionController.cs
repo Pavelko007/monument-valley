@@ -14,6 +14,7 @@ public class InteractionController : MonoBehaviour
     {
         var pointerEventData = eventData as PointerEventData;
         prevMousePos = pointerEventData.pressPosition;
+        rotationExecutor.StartRotation();
     }
 
     public void OnMouseUp(BaseEventData eventData)
@@ -25,8 +26,6 @@ public class InteractionController : MonoBehaviour
 
     public void OnMouseDrag(BaseEventData eventData)
     {
-        rotationExecutor.StartRotation();
-
         var pointerEventData = eventData as PointerEventData;
         var curPointerPos = pointerEventData.position;
         var handleCenterScreen = (Vector2)Camera.main.WorldToScreenPoint(handleCenterTransform.position);
