@@ -9,7 +9,8 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
     {
         RotatingClockwise,
         RotatingCounterclockwise,
-        FixedPosition
+        FixedPosition,
+        ExternalRotation
     }
 
     private State state = State.FixedPosition;
@@ -77,15 +78,18 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
                 if (counterclockwiseDist < 45)
                 {
+                    TargetAngle = nextCounterclockwiseAngle;
                     accStrenght = CalcAccStrenght(counterclockwiseDist);
                     acc = (-1) * accStrenght * accMagnitude;
                 }
                 else
                 {
+                    TargetAngle = nextClockwiseAngle;
                     accStrenght = CalcAccStrenght(clockwiseDist);
                     acc = accStrenght * accMagnitude;
                 }
                 newAngularSpeed += Time.deltaTime * acc;
+                angularSpeed = newAngularSpeed;
                 ///determine acc sign
                 //calculate acceleration toward point
 
@@ -99,9 +103,8 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isRotating)
+        if (state == State.ExternalRotation)
         {
-
             angularSpeed = (CurAngle-prevAngle) / Time.deltaTime;
             prevAngle = CurAngle;
             Debug.Log($"angular speed : {angularSpeed}");
@@ -114,8 +117,9 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
         return (45-distToClosestTarget)/45;
     }
 
-    public void StartRotation()
+    public void StartExternalRotation()
     {
+        state = State.ExternalRotation;
         isRotating = true;
         prevAngle = CurAngle;
     }
@@ -176,14 +180,7 @@ public class RotateKeyboardConstantSpeed : MonoBehaviour
 
     public void StopExternalRotation()
     {
-        if (angularSpeed > 0)
-        {
-            RotateClockwise();
-        }
-        else
-        {
-            RotateCounterclockwise();
-        }
+        state = State.RotatingClockwise;
     }
 
     public void RotateDeltaExternal(float deltaAngle)

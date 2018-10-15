@@ -14,7 +14,7 @@ public class InteractionController : MonoBehaviour
     {
         var pointerEventData = eventData as PointerEventData;
         prevMousePos = pointerEventData.pressPosition;
-        rotationExecutor.StartRotation();
+        rotationExecutor.StartExternalRotation();
     }
 
     public void OnMouseUp(BaseEventData eventData)
